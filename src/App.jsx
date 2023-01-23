@@ -19,7 +19,7 @@ function App() {
     <Stack
       justifyContent="center"
       sx={{
-        height: "100vh",
+        height: { xs: "100%", md: "100vh" },
         width: "100vw",
         bgcolor: Colors.red,
         backgroundImage: `url(${DesktopImage})`,
@@ -28,22 +28,30 @@ function App() {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={6} sx={{ alignSelf: "center" }}>
+        <Grid item xs={12} md={6} sx={{ alignSelf: "center" }}>
           <Stack sx={{ px: 8, pt: 3 }}>
             <Typography
               variant="h2"
-              sx={{ color: "white", fontWeight: "bold", mb: 1 }}
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+                mb: 1,
+                textAlign: { xs: "center" },
+              }}
             >
               Learn to code by watching others
             </Typography>
-            <Typography variant="h6" sx={{ color: Colors.white, mt: 2 }}>
+            <Typography
+              variant="h6"
+              sx={{ color: Colors.white, mt: 2, textAlign: { xs: "center" } }}
+            >
               See how experienced developers solve problems in real-time.
               Watching scripted tutorials is great, but understanding how
               developers think is invaluable.
             </Typography>
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6} sx={{ mb: { xs: 5 } }}>
           <Stack spacing={2}>
             <Stack
               justifyContent="center"
@@ -60,10 +68,10 @@ function App() {
                 boxShadow: 1,
               }}
             >
-              <Typography align="center" sx={{ fontWeight: "bold" }}>
+              <Typography align="center" sx={{ fontWeight: "bold", fontSize: 14  }}>
                 Try it free 7 days
               </Typography>
-              <Typography align="center" sx={{ ml: 0.3 }}>
+              <Typography align="center" sx={{ ml: 0.3, fontSize: 14 }}>
                 then R20/mo. thereafter
               </Typography>
             </Stack>
