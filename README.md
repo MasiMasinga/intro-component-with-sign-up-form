@@ -26,8 +26,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1)
-- Live Site URL: [Add live site URL here](https://dynamic-mandazi-15db52.netlify.app)
+- Solution URL: [https://www.frontendmentor.io/challenges/intro-component-with-signup-form-5cf91bd49edda32581d28fd1]
+- Live Site URL: [https://dynamic-mandazi-15db52.netlify.app]
 
 ## My process
 
