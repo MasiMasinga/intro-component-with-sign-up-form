@@ -36,14 +36,14 @@ function App() {
                 color: "white",
                 fontWeight: "bold",
                 mb: 1,
-                textAlign: { xs: "center" },
+                textAlign: { xs: "center", md: 'left' },
               }}
             >
               Learn to code by watching others
             </Typography>
             <Typography
               variant="h6"
-              sx={{ color: Colors.white, mt: 2, textAlign: { xs: "center" } }}
+              sx={{ color: Colors.white, mt: 2, textAlign: { xs: "center", md: 'left' } }}
             >
               See how experienced developers solve problems in real-time.
               Watching scripted tutorials is great, but understanding how
