@@ -3,10 +3,15 @@ import React from "react";
 // Mui
 import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+
+// React Hook Form
+import { useForm, Controller } from "react-hook-form";
+
+// Components
+import Button from "./common/components/Button";
+import Typography from "./common/components/Typography";
 
 // Utils
 import { Colors } from "./common/utils/constants";
@@ -15,6 +20,23 @@ import { Colors } from "./common/utils/constants";
 import DesktopImage from "./assets/images/bg-intro-desktop.png";
 
 function App() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: "Jonathan",
+      lastName: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Stack
       justifyContent="center"
@@ -32,18 +54,22 @@ function App() {
           <Stack sx={{ px: 8, pt: 3 }}>
             <Typography
               variant="h2"
+              bold
+              mb
               sx={{
                 color: "white",
-                fontWeight: "bold",
-                mb: 1,
-                textAlign: { xs: "center", md: 'left' },
+                textAlign: { xs: "center", md: "left" },
               }}
             >
               Learn to code by watching others
             </Typography>
             <Typography
               variant="h6"
-              sx={{ color: Colors.white, mt: 2, textAlign: { xs: "center", md: 'left' } }}
+              mt
+              sx={{
+                color: Colors.white,
+                textAlign: { xs: "center", md: "left" },
+              }}
             >
               See how experienced developers solve problems in real-time.
               Watching scripted tutorials is great, but understanding how
@@ -68,7 +94,7 @@ function App() {
                 boxShadow: 1,
               }}
             >
-              <Typography align="center" sx={{ fontWeight: "bold", fontSize: 14  }}>
+              <Typography align="center" bold sx={{ fontSize: 14 }}>
                 Try it free 7 days
               </Typography>
               <Typography align="center" sx={{ ml: 0.3, fontSize: 14 }}>
@@ -84,23 +110,113 @@ function App() {
                 alignSelf: "center",
               }}
             >
-              <Stack spacing={2} sx={{ p: 3 }}>
-                <TextField
-                  label="First Name"
-                  defaultValue="Jonathan"
-                  size="small"
+              <Stack
+                component="form"
+                noValidate
+                onSubmit={handleSubmit(onSubmit)}
+                spacing={2}
+                sx={{ p: 3 }}
+              >
+                <Controller
+                  name="firstName"
+                  control={control}
+                  rules={{
+                    required: "First name is required",
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextField
+                      fullWidth
+                      id="firstName"
+                      label="First Name"
+                      name="firstName"
+                      //defaultValue="Jonathan"
+                      size="small"
+                      autoComplete="given-name"
+                      autoFocus
+                      onBlur={onBlur}
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
                 />
-                <TextField label="Last Name" size="small" />
-                <TextField label="Email Address" size="small" />
-                <TextField label="Password" size="small" />
+                {errors.firstName && (
+                  <Typography bold sx={{ color: Colors.red }}>
+                    {errors.firstName.message}
+                  </Typography>
+                )}
+                <Controller
+                  name="lastName"
+                  control={control}
+                  rules={{
+                    required: "Last name is required",
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextField
+                      fullWidth
+                      id="lastName"
+                      label="Last Name"
+                      name="lastName"
+                      size="small"
+                      autoComplete="family-name"
+                      onBlur={onBlur}
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+                {errors.lastName && (
+                  <Typography bold sx={{ color: Colors.red }}>
+                    {errors.lastName.message}
+                  </Typography>
+                )}
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{
+                    required: "Email is required",
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextField
+                      fullWidth
+                      id="email"
+                      label="Email Address"
+                      name="email"
+                      size="small"
+                      autoComplete="email"
+                      onBlur={onBlur}
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
+                />
+                {errors.email && (
+                  <Typography bold sx={{ color: Colors.red }}>
+                    {errors.email.message}
+                  </Typography>
+                )}
+                <Controller
+                  name="password"
+                  control={control}
+                  rules={{
+                    required: "Password is required",
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextField
+                      fullWidth
+                      id="password"
+                      label="Password"
+                      name="password"
+                      size="small"
+                      autoComplete="current-password"
+                      onBlur={onBlur}
+                      value={value}
+                      onChange={onChange}
+                    />
+                  )}
+                />
               </Stack>
               <Stack sx={{ px: 3 }}>
-                <Button
-                  variant="contained"
-                  sx={{ bgcolor: Colors.primaryGreen, p: 1 }}
-                >
-                  CLAIM YOUR FREE TRIAL
-                </Button>
+                <Button title="CLAIM YOUR FREE TRIAL" />
               </Stack>
               <Stack
                 justifyContent="center"
@@ -112,10 +228,10 @@ function App() {
                 </Typography>
                 <Typography
                   align="center"
+                  bold
                   sx={{
                     fontSize: 8,
                     color: "red",
-                    fontWeight: "bold",
                     ml: 0.3,
                     cursor: "pointer",
                   }}
